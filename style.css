@@ -120,6 +120,7 @@ p {
 .image-container img {
     max-width: 100%; /* Scales image properly */
     height: auto;
+    text-align: center;
 }
 
 /* Scoreboard layout */
@@ -129,6 +130,7 @@ p {
     align-items: center;
     gap: 20px;
     width: 100%; /* Ensure full width for even spacing */
+    text-align: center;
 }
 
 #scoreboard {
