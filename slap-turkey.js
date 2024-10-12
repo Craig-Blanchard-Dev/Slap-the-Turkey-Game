@@ -69,12 +69,15 @@ function updateSlapInfo() {
         const user = data.users.find(u => u.username === username);
         progress.textContent = `Your Slaps: ${user ? user.slap_count : 0}`;
 
+        // Sort users by slap count in descending order
+        const sortedUsers = data.users.sort((a, b) => b.slap_count - a.slap_count);
+
         // Update the player list
         const playerList = document.getElementById("playerList");
         playerList.innerHTML = ''; // Clear the list before updating
 
         // Populate the list with each user's slap count
-        data.users.forEach(user => {
+        sortedUsers.forEach(user => {
             const li = document.createElement('li');
             li.textContent = `${user.username}: ${user.slap_count} slaps`;
             playerList.appendChild(li);
@@ -84,6 +87,7 @@ function updateSlapInfo() {
         console.error('Error fetching slap info:', error);
     });
 }
+
 
 // Countdown timer for Thanksgiving
 const countdownInterval = setInterval(() => {
