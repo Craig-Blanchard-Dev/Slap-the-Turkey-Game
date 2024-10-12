@@ -94,3 +94,20 @@ p {
 #scoreboard li {
     margin: 5px 0;
 }
+
+.content-wrapper {
+    display: flex;
+    justify-content: space-between; /* Adjusts space between text and image */
+    align-items: center;
+    gap: 20px; /* Space between image and text */
+}
+
+.left-text, .right-text {
+    width: fit-content;
+    padding: 10px;
+}
+
+.image-container img {
+    max-width: 100%; /* Scales image properly */
+    height: auto;
+}
