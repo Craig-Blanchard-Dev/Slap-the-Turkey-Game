@@ -65,12 +65,16 @@ function updateTurkeyStatus() {
 // Function to update total slaps and user contributions from the server
 function updateSlapInfo() {
     fetch('get_slaps.php')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.text(); // Log raw text instead of JSON
+    })
+    .then(rawData => {
+        console.log("Raw response: ", rawData); // Log the raw response to the console
+        return JSON.parse(rawData);  // Then parse the JSON
+    })
         .then(data => {
             // Update total slaps (using total_slaps)
             totalSlapsElement.textContent = `Total Slaps: ${data.total}`;
