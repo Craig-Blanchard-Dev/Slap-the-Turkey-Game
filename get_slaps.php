@@ -1,4 +1,14 @@
 <?php
+// Enable error reporting
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+// The rest of your code follows here...
+?>
+
+
+
+<?php
 // Include the database connection (assuming db_connect.php contains your pg_connect setup)
 include 'db_connect.php'; // Ensure this file has the PostgreSQL connection
 
