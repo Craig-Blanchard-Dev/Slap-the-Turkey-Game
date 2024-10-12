@@ -5,6 +5,7 @@ body {
     display: flex;
     flex-direction: column;
     background: linear-gradient(to right, #FF7F50, #D2691E, #F4A460, #B22222); /* Thanksgiving colors */
+    margin: 0; /* Remove default body margin */
 }
 
 .content {
@@ -13,23 +14,26 @@ body {
 
 #Container {
     text-align: center;
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    padding: 20px; /* Add padding for better spacing */
 }
 
 #turkey {
-            width: 400px;
-            border-radius: 25px;
-            padding: 10px;
+    width: 400px;
+    border-radius: 25px;
+    padding: 10px;
 }
 
 #progress {
-            margin-top: 10px; 
-            padding: 10px;
-            font-size: 1.2em;    
+    margin-top: 10px; 
+    padding: 10px;
+    font-size: 1.2em;    
 }
-   
+
 .footer {
-    font-size: .75em;
+    font-size: 0.75em;
     text-align: center;
     padding: 10px;
     position: relative;
@@ -52,6 +56,7 @@ body {
     font-size: 20px;
     border-radius: 10px;
     padding: 5px;
+    cursor: pointer; /* Add pointer to indicate clickable button */
 }
 
 #countdown {
@@ -62,23 +67,37 @@ body {
 
 h1 {
     font-size: 3em;
+    margin: 0; /* Add margin reset */
 }
 
 h3 {
     font-size: 2em;
+    margin: 10px 0;
 }
 
 h4 {
     font-size: 1.5em;
+    margin: 10px 0;
 }
 
 p {
     font-size: 2em;
 }
 
+#scoreboard {
+    margin: 0 auto;
+    text-align: center;
+    font-size: 2rem;
+    background-color: #f0f0f0; /* Light grey background */
+    padding: 15px;
+    border-radius: 10px;
+    width: fit-content;
+}
+
 #scoreboard ul {
     list-style-type: none;
     padding: 0;
+    margin: 0; /* Reset margin for better list spacing */
 }
 
 #scoreboard li {
@@ -87,9 +106,10 @@ p {
 
 .content-wrapper {
     display: flex;
-    justify-content: space-between; /* Adjusts space between text and image */
+    justify-content: space-between; /* Space between text and image */
     align-items: center;
     gap: 20px; /* Space between image and text */
+    width: 100%; /* Ensure it takes up full width */
 }
 
 .left-text, .right-text {
@@ -105,17 +125,18 @@ p {
 /* Scoreboard layout */
 .scoreboard-wrapper {
     display: flex;
-    justify-content: space-between; /* Spreads left, right text and scoreboard evenly */
+    justify-content: space-between; /* Space between left/right text and scoreboard */
     align-items: center;
-    gap: 20px; /* Adds space between the text and scoreboard */
+    gap: 20px;
+    width: 100%; /* Ensure full width for even spacing */
 }
 
 #scoreboard {
-    text-align: center;
     font-size: 2rem;
-    width: fit-content;
     padding: 15px;
-    background-color: #f0f0f0; /* Optional background */
-    border: 1px solid #ccc; /* Optional border */
+    background-color: #f0f0f0; /* Light grey background */
+    border: 1px solid #ccc;
     border-radius: 10px;
+    width: fit-content;
+    margin: 0 auto; /* Center the scoreboard */
 }
