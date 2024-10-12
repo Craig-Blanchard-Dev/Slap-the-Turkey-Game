@@ -121,6 +121,7 @@ p {
     max-width: 100%; /* Scales image properly */
     height: auto;
     text-align: center;
+    display: inline-block;
 }
 
 /* Scoreboard layout */
