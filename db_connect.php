@@ -1,7 +1,6 @@
 <?php
 // Use your Heroku DATABASE_URL here
-$db_url = 'postgres://u2eo2h512h0v2v:pa2017cd9fccf9241fea590ecd928cbead4cac455db11ec3d17a7cf08fb656c82@c8m0261h0c7idk.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/dfq54pj7m0bvn4
-';
+$db_url = 'postgres://u2eo2h512h0v2v:pa2017cd9fccf9241fea590ecd928cbead4cac455db11ec3d17a7cf08fb656c82@c8m0261h0c7idk.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/dfq54pj7m0bvn4';
 
 // Parse the Heroku DATABASE_URL
 $db_opts = parse_url($db_url);
