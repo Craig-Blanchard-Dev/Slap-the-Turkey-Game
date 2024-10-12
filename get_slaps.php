@@ -1,50 +1,36 @@
 <?php
-// Enable error reporting
+// Enable error reporting, but don't output it as HTML
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// The rest of your code follows here...
-?>
+// Set the header to ensure JSON is always returned
+header('Content-Type: application/json');
 
+try {
+    // Your code to fetch slaps data from the database
+    // For example:
+    $response = ['status' => 'error', 'message' => 'An error occurred'];
 
+    // Simulate data fetching from a database or other source
+    // Replace this part with your actual database logic
+    $username = 'test_user';  // This should come from the database
+    $slap_count = 50;         // Example slap count
 
-<?php
-// Include the database connection (assuming db_connect.php contains your pg_connect setup)
-include 'db_connect.php'; // Ensure this file has the PostgreSQL connection
+    // Example successful response
+    $response = [
+        'status' => 'success',
+        'total' => 1000,  // Example total slaps
+        'users' => [
+            ['username' => $username, 'slap_count' => $slap_count]
+        ]
+    ];
 
-if (!$conn) {
-    die("Database connection error: " . pg_last_error());
+    // Send the JSON response
+    echo json_encode($response);
+} catch (Exception $e) {
+    // If an error occurs, return the error as JSON
+    http_response_code(500);
+    echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
 }
 
-// Fetch total slaps (sum the total_slaps column)
-$totalQuery = "SELECT SUM(total_slaps) AS total FROM slaps";
-$result = pg_query($conn, $totalQuery);
-if (!$result) {
-    echo "An error occurred when fetching total slaps.\n";
-    exit;
-}
-$row = pg_fetch_assoc($result);
-$totalSlaps = $row['total_slaps'];
-
-// Fetch individual slap counts for each user
-$usersQuery = "SELECT username, slap_count FROM slaps";
-$result = pg_query($conn, $usersQuery);
-if (!$result) {
-    echo "An error occurred when fetching individual slaps.\n";
-    exit;
-}
-
-$users = [];
-while ($row = pg_fetch_assoc($result)) {
-    $users[] = $row;
-}
-
-// Send data back as JSON
-echo json_encode([
-    'total' => $totalSlaps,
-    'users' => $users
-]);
-
-// Close the connection
-pg_close($conn);
 ?>
