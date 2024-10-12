@@ -79,7 +79,9 @@ function updateSlapInfo() {
             playerList.appendChild(li);
         });
     })
-    .catch(error => console.error('Error fetching slap info:', error));
+    .catch(error => {
+        console.error('Error fetching slap info:', error);
+    });
 }
 
 // Countdown timer for Thanksgiving
