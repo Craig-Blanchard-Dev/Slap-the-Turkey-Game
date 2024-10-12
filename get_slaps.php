@@ -7,30 +7,45 @@ ini_set('display_errors', 1);
 header('Content-Type: application/json');
 
 try {
-    // Your code to fetch slaps data from the database
-    // For example:
-    $response = ['status' => 'error', 'message' => 'An error occurred'];
+    // Database connection (replace with your actual database connection logic)
+    include 'db_connect.php';  // This should be your actual database connection file
 
-    // Simulate data fetching from a database or other source
-    // Replace this part with your actual database logic
-    $username = 'test_user';  // This should come from the database
-    $slap_count = 50;         // Example slap count
+    // Fetch the total number of slaps from the database
+    $totalQuery = "SELECT SUM(slap_count) AS total FROM slaps";
+    $result = pg_query($conn, $totalQuery);
 
-    // Example successful response
+    if (!$result) {
+        throw new Exception("Failed to fetch total slaps from the database: " . pg_last_error($conn));
+    }
+
+    $row = pg_fetch_assoc($result);
+    $totalSlaps = $row['total'];
+
+    // Fetch individual slaps for each user
+    $usersQuery = "SELECT username, slap_count FROM slaps";
+    $result = pg_query($conn, $usersQuery);
+
+    if (!$result) {
+        throw new Exception("Failed to fetch user slaps from the database: " . pg_last_error($conn));
+    }
+
+    $users = [];
+    while ($row = pg_fetch_assoc($result)) {
+        $users[] = ['username' => $row['username'], 'slap_count' => $row['slap_count']];
+    }
+
+    // Send the successful JSON response with the real data
     $response = [
         'status' => 'success',
-        'total' => 1000,  // Example total slaps
-        'users' => [
-            ['username' => $username, 'slap_count' => $slap_count]
-        ]
+        'total' => $totalSlaps,
+        'users' => $users
     ];
 
-    // Send the JSON response
     echo json_encode($response);
+
 } catch (Exception $e) {
     // If an error occurs, return the error as JSON
     http_response_code(500);
     echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
 }
-
 ?>
