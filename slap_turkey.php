@@ -1,37 +1,50 @@
 <?php
-include 'db_connect.php'; // Ensure this contains your PostgreSQL connection
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-if (!$conn) {
-    die("Database connection error: " . pg_last_error());
-}
+header('Content-Type: application/json');
 
-$username = $_POST['username'];
-$slaps = $_POST['slap_count'];
-
-// Debugging - Check if POST data is being received correctly
-var_dump($username);
-var_dump($slaps);
-
-// Corrected Query - Use correct column names (slap_count and total_slaps)
-$query = "INSERT INTO slaps (username, slap_count, total_slaps) 
-          VALUES ($1, $2, $2) 
-          ON CONFLICT (username) 
-          DO UPDATE SET slap_count = slaps.slap_count + $2, total_slaps = slaps.total_slaps + $2";
-
-$result = pg_prepare($conn, "insert_slaps", $query);
-
-if ($result) {
-    if (!pg_execute($conn, "insert_slaps", array($username, $slaps))) {
-        echo "Error executing query: " . pg_last_error($conn);
-    } else {
-        echo "Slap recorded!";
+try {
+    // Use your Heroku DATABASE_URL
+    $db_url = getenv('DATABASE_URL');
+    if (!$db_url) {
+        throw new Exception("No DATABASE_URL found.");
     }
-} else {
-    echo "Error preparing query: " . pg_last_error($conn);
+
+    $db_opts = parse_url($db_url);
+
+    // Establish connection
+    $conn = pg_connect(
+        "host={$db_opts['host']} " .
+        "port={$db_opts['port']} " .
+        "user={$db_opts['user']} " .
+        "password={$db_opts['pass']} " .
+        "dbname=" . ltrim($db_opts['path'], '/')
+    );
+
+    if (!$conn) {
+        throw new Exception("Database connection error: " . pg_last_error());
+    }
+
+    // Proceed with your logic
+    $totalQuery = "SELECT SUM(slap_count) AS total FROM slaps";
+    $result = pg_query($conn, $totalQuery);
+    if (!$result) {
+        throw new Exception("Query error: " . pg_last_error());
+    }
+
+    $row = pg_fetch_assoc($result);
+    $totalSlaps = $row['total'];
+
+    echo json_encode([
+        'status' => 'success',
+        'total' => $totalSlaps
+    ]);
+
+} catch (Exception $e) {
+    http_response_code(500);
+    echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
 }
 
 pg_close($conn);
 ?>
-
-
-
