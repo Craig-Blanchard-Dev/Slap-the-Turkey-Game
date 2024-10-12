@@ -12,8 +12,13 @@ try {
         throw new Exception("Failed to connect to the database.");
     }
 
+    // Log that connection is open
+    error_log("PostgreSQL connection opened.");
+
     // Query to fetch the total number of slaps from the database
     $totalQuery = "SELECT SUM(slap_count) AS total FROM slaps";
+    
+    if (!$conn) throw new Exception("Connection closed unexpectedly.");
     $totalResult = pg_query($conn, $totalQuery);
 
     // Check if the query was successful
@@ -23,10 +28,12 @@ try {
 
     // Get the total slaps count from the query result
     $row = pg_fetch_assoc($totalResult);
-    $totalSlaps = isset($row['total']) ? (int) $row['total'] : 0;  // Ensure total slaps is an integer
+    $totalSlaps = isset($row['total']) ? (int) $row['total'] : 0;
 
     // Query to fetch individual slap counts per user
     $usersQuery = "SELECT username, slap_count FROM slaps";
+    
+    if (!$conn) throw new Exception("Connection closed unexpectedly.");
     $userResult = pg_query($conn, $usersQuery);
 
     // Check if the query was successful
@@ -61,6 +68,7 @@ try {
 } finally {
     // Always close the database connection after all queries
     if (isset($conn)) {
-        pg_close($conn); // Ensure this is only called after queries are done
+        error_log('Closing PostgreSQL connection.');  // Log when the connection is closed
+        pg_close($conn);
     }
 }
