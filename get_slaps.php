@@ -1,5 +1,5 @@
 <?php
-// Set error reporting (adjust for production)
+// Set error reporting (can be adjusted for production)
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
@@ -38,16 +38,16 @@ try {
     $users = [];
     while ($row = pg_fetch_assoc($userResult)) {
         $users[] = [
-            'username' => $row['username'],       // Username of the player
-            'slap_count' => (int) $row['slap_count'] // Ensure slap count is an integer
+            'username' => $row['username'],
+            'slap_count' => (int) $row['slap_count']
         ];
     }
 
     // Create the response array
     $response = [
-        'status' => 'success',   // Indicate the operation was successful
-        'total' => $totalSlaps,  // Total number of slaps
-        'users' => $users        // List of users and their slap counts
+        'status' => 'success',
+        'total' => $totalSlaps,
+        'users' => $users
     ];
 
     // Send the JSON response
@@ -57,9 +57,10 @@ try {
     // If an error occurs, send a 500 response and return the error message as JSON
     http_response_code(500);
     echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
+
 } finally {
-    // Always close the database connection after use
+    // Always close the database connection after all queries
     if (isset($conn)) {
-        pg_close($conn);
+        pg_close($conn); // Ensure this is only called after queries are done
     }
 }
