@@ -1,14 +1,12 @@
 <?php
-// Enable error reporting, but don't output it as HTML
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Set the header to ensure JSON is always returned
 header('Content-Type: application/json');
 
 try {
-    // Database connection (replace with your actual database connection logic)
-    include 'db_connect.php';  // This should be your actual database connection file
+    // Include database connection
+    include 'db_connect.php';
 
     // Fetch the total number of slaps from the database
     $totalQuery = "SELECT SUM(slap_count) AS total FROM slaps";
@@ -31,13 +29,16 @@ try {
 
     $users = [];
     while ($row = pg_fetch_assoc($result)) {
-        $users[] = ['username' => $row['username'], 'slap_count' => $row['slap_count']];
+        $users[] = [
+            'username' => $row['username'],
+            'slap_count' => (int) $row['slap_count']
+        ];
     }
 
-    // Send the successful JSON response with the real data
+    // Send the successful JSON response with the data
     $response = [
         'status' => 'success',
-        'total' => $totalSlaps,
+        'total' => (int) $totalSlaps,
         'users' => $users
     ];
 
@@ -48,4 +49,7 @@ try {
     http_response_code(500);
     echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
 }
+
+// Ensure connection is closed only after all queries are done
+pg_close($conn);
 ?>
