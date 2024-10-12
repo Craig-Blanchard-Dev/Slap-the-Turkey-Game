@@ -14,7 +14,7 @@ if (!$result) {
     exit;
 }
 $row = pg_fetch_assoc($result);
-$totalSlaps = $row['total'];
+$totalSlaps = $row['total_slaps'];
 
 // Fetch individual slap counts for each user
 $usersQuery = "SELECT username, slap_count FROM slaps";

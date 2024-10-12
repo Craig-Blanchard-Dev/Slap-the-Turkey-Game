@@ -6,7 +6,7 @@ if (!$conn) {
 }
 
 $username = $_POST['username'];
-$slaps = $_POST['slaps'];
+$slaps = $_POST['slap_count'];
 
 // Debugging - Check if POST data is being received correctly
 var_dump($username);
