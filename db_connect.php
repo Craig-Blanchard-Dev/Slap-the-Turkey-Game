@@ -20,14 +20,6 @@ if (!$conn) {
     die("An error occurred while connecting to the database.");
 }
 
-// Example query to verify the connection and fetch data from the 'slaps' table
-$result = pg_query($conn, 'SELECT * FROM slaps');
-
-// Loop through each row in the result and print it
-while ($row = pg_fetch_assoc($result)) {
-    print_r($row); // Output each row as an associative array
-}
-
-// Close the database connection when done
-pg_close($conn);
+// At this point, the connection is established, and you can perform queries
+// The connection will remain open and should be closed in the main script when necessary.
 ?>
