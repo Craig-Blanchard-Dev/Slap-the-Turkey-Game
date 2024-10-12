@@ -47,7 +47,7 @@ try {
     if ($result && pg_num_rows($result) > 0) {
         // User exists, update their slap count
         $row = pg_fetch_assoc($result);
-        $newSlapCount = $row['slap_count'] + $slap_count;
+        $newSlapCount = $row['slap_count'] + 1;  // Always add 1
 
         // Update the existing record with the new slap count
         $updateQuery = "UPDATE slaps SET slap_count = $1 WHERE username = $2";
@@ -56,7 +56,7 @@ try {
         // User doesn't exist, insert a new record
         $insertQuery = "INSERT INTO slaps (username, slap_count) VALUES ($1, $2)";
         pg_query_params($conn, $insertQuery, [$username, $slap_count]);
-        $newSlapCount = $slap_count;  // New user's slap count
+        $newSlapCount = 1;  // New user's slap count
     }
 
     // Fetch the updated total number of slaps across all users

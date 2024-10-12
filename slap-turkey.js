@@ -21,6 +21,7 @@ const totalSlapsToCook = 1000000; // Adjust as necessary
 // Event listener for when the 'Slap the Turkey' button is clicked
 slapButton.addEventListener("click", () => {
     slaps += 1; // Always add 1
+    console.log('Slap count:', slaps);
     progress.textContent = `Your Slaps: ${slaps}`; // Update user's slap count
     updateTurkeyStatus(); // Update turkey image and status
 
