@@ -3,7 +3,7 @@ body {
     width: 100vw;
     margin: 0;
     font-family: "Mountains of Christmas", serif;
-    font-weight: 600;
+    font-weight: 500;
     font-style: normal;
     background: linear-gradient(to right, #FF7F50, #D2691E, #F4A460, #B22222);
     overflow-x: hidden; /* Prevent horizontal scroll */
@@ -13,7 +13,7 @@ body {
     text-align: center;
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 10px;
     max-width: 1200px;
     margin: 0 auto; /* Center the container */
 }
@@ -23,7 +23,7 @@ body {
     border-radius: 25px;
     padding: 10px;
     display: block;
-    margin: 20px auto; /* Center the image */
+    margin: 10px auto; /* Center the image */
 }
 
 #totalSlaps {
