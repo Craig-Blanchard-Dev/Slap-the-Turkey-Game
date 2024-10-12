@@ -76,16 +76,6 @@ p {
     font-size: 2em;
 }
 
-#scoreboard {
-    margin: 0 auto;
-    text-align: center;
-    font-size: 2rem;
-    background-color: #f0f0f0; /* A light grey background */
-    padding: 15px;
-    border-radius: 10px;
-    width: fit-content;
-}
-
 #scoreboard ul {
     list-style-type: none;
     padding: 0;
@@ -110,4 +100,22 @@ p {
 .image-container img {
     max-width: 100%; /* Scales image properly */
     height: auto;
+}
+
+/* Scoreboard layout */
+.scoreboard-wrapper {
+    display: flex;
+    justify-content: space-between; /* Spreads left, right text and scoreboard evenly */
+    align-items: center;
+    gap: 20px; /* Adds space between the text and scoreboard */
+}
+
+#scoreboard {
+    text-align: center;
+    font-size: 2rem;
+    width: fit-content;
+    padding: 15px;
+    background-color: #f0f0f0; /* Optional background */
+    border: 1px solid #ccc; /* Optional border */
+    border-radius: 10px;
 }

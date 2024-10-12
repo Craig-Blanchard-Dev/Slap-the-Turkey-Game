@@ -1,12 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <title>Slap the Turkey</title>
-</head>
 <body>
     <div id="Container">
         <h1>The Great Turkey Spankin 2024!</h1>
@@ -46,9 +37,20 @@
             <div id="countdown"></div>
         </div>
 
-        <div id="scoreboard">
-            <h2>...Spanker Count...</h2>
-            <ul id="playerList"></ul> <!-- This will be dynamically populated -->
+        <!-- Text and Scoreboard side-by-side -->
+        <div class="scoreboard-wrapper">
+            <div class="left-text">
+                <p>Left text (e.g., player tips or event info)</p>
+            </div>
+
+            <div id="scoreboard">
+                <h2>...Spanker Count...</h2>
+                <ul id="playerList"></ul> <!-- This will be dynamically populated -->
+            </div>
+
+            <div class="right-text">
+                <p>Right text (e.g., sponsor info or another fun fact)</p>
+            </div>
         </div>
       
         <footer class="footer">
@@ -58,4 +60,3 @@
         <script src="slap-turkey.js"></script>
     </div>
 </body>
-</html>
