@@ -3,6 +3,9 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+// Initialize $data
+$data = array();
+
 // Set the content type to JSON for the response
 header('Content-Type: application/json');
 echo json_encode($data);
