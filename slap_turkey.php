@@ -26,19 +26,48 @@ try {
         throw new Exception("Database connection error: " . pg_last_error());
     }
 
-    // Proceed with your logic
+    // Get the POST data
+    $username = $_POST['username'] ?? null;
+    $slap_count = (int) ($_POST['slap_count'] ?? 0);
+
+    if (!$username || $slap_count <= 0) {
+        throw new Exception("Invalid data provided.");
+    }
+
+    // Check if the user already exists
+    $userQuery = "SELECT slap_count FROM slaps WHERE username = $1";
+    $result = pg_query_params($conn, $userQuery, [$username]);
+
+    if ($result && pg_num_rows($result) > 0) {
+        // If the user exists, update their slap count
+        $row = pg_fetch_assoc($result);
+        $newSlapCount = $row['slap_count'] + $slap_count;
+
+        $updateQuery = "UPDATE slaps SET slap_count = $1 WHERE username = $2";
+        pg_query_params($conn, $updateQuery, [$newSlapCount, $username]);
+    } else {
+        // If the user doesn't exist, insert a new record
+        $insertQuery = "INSERT INTO slaps (username, slap_count) VALUES ($1, $2)";
+        pg_query_params($conn, $insertQuery, [$username, $slap_count]);
+    }
+
+    // Fetch the updated total slaps
     $totalQuery = "SELECT SUM(slap_count) AS total FROM slaps";
     $result = pg_query($conn, $totalQuery);
+    
     if (!$result) {
-        throw new Exception("Query error: " . pg_last_error());
+        throw new Exception("Failed to fetch total slaps: " . pg_last_error($conn));
     }
 
     $row = pg_fetch_assoc($result);
     $totalSlaps = $row['total'];
 
+    // Return the updated total slaps and user's slap count
     echo json_encode([
         'status' => 'success',
-        'total' => $totalSlaps
+        'total' => $totalSlaps,
+        'username' => $username,
+        'user_slaps' => $newSlapCount ?? $slap_count
     ]);
 
 } catch (Exception $e) {
