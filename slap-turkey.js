@@ -42,7 +42,7 @@ slapButton.addEventListener("click", () => {
 // Function to update the turkey's image and status based on slap count
 function updateTurkeyStatus() {
     if (slaps < totalSlapsToCook / 3) {
-        status.textContent = "Status: As raw ass it gets...";
+        status.textContent = "Status: As raw as it gets...";
         turkeyImg.src = "Raw_Turkey.webp"; // Adjust image path as needed
     } else if (slaps < (totalSlapsToCook / 3) * 2) {
         status.textContent = "Status: It's starting to steam!";
