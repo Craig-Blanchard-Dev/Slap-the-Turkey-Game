@@ -1,0 +1,91 @@
+body {
+    font-family: "Mountains of Christmas", serif;
+    font-weight: 600;
+    font-style: normal;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(to right, #FF7F50, #D2691E, #F4A460, #B22222); /* Thanksgiving colors */
+}
+
+.content {
+    flex: 1;
+}
+
+#Container {
+    text-align: center;
+    align-items: center;
+}
+
+#turkey {
+            width: 400px;
+            border-radius: 25px;
+            padding: 10px;
+}
+
+#progress {
+            margin-top: 10px; 
+            padding: 10px;
+            font-size: 1.2em;    
+}
+   
+.footer {
+    font-size: .75em;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    bottom: 0;
+}
+
+#totalSlaps {
+    padding: 10px;
+    font-size: 2em;
+}
+
+#status {
+    padding: 10px;
+    font-size: 3em;
+}
+
+#slapButton {
+    padding: 5px;
+}
+
+#countdown {
+    font-size: 1.5rem;
+    text-align: center;
+    margin: 20px;
+}
+
+h1 {
+    font-size: 3em;
+}
+
+h3 {
+    font-size: 2em;
+}
+
+h4 {
+    font-size: 1.5em;
+}
+
+p {
+    font-size: 2em;
+}
+
+#scoreboard {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 1rem;
+    background-color: #f0f0f0; /* A light grey background */
+    padding: 15px;
+    border-radius: 10px;
+}
+
+#scoreboard ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#scoreboard li {
+    margin: 5px 0;
+}

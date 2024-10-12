@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Slap the Turkey</title>
+</head>
+<body>
+    <div id="Container">
+        <h1>The Great Turkey Spankin 2024!</h1>
+        <h3>Help spank a turkey until it's cooked!</h3>
+        <h4>*Community effort event*</h4>
+        <img id="turkey" src="Raw_Turkey.webp" alt="Raw Turkey">
+        <br>
+
+        <!-- new total slaps -->
+        <div id="totalSlaps">Total Spanks: 0</div>
+
+        <!-- turkey status -->
+        <div id="status">Status: Raw</div>
+
+        <!-- individual user slaps -->
+        <div id="progress">Your Spanks: 0</div>
+
+        <button id="slapButton">Spank the Turkey!</button>
+     
+        <div class="content">
+            <p>Countdown to Thanksgiving</p>
+            <div id="countdown"></div>
+        </div>
+
+        <div id="scoreboard">
+            <h3>Spanker Count</h3>
+            <ul id="playerList"></ul> <!-- This will be dynamically populated -->
+        </div>
+      
+        <footer class="footer">
+          A Before Midnight Game Studio Production
+        </footer>
+
+        <script src="slap-turkey.js"></script>
+    </div>
+</body>
+</html>
