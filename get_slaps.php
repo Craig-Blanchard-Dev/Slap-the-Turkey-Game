@@ -5,6 +5,7 @@ ini_set('display_errors', 1);
 
 // Set the content type to JSON for the response
 header('Content-Type: application/json');
+echo json_encode($data);
 
 try {
     // Include the database connection file
