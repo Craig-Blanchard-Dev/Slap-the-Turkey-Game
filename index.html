@@ -8,6 +8,17 @@
     <title>Slap the Turkey</title>
 </head>
 <body>
+    <!-- Audio Element for Page Load -->
+    <audio id="load-sound" src="Turkey_Landing.mp3" preload="auto"></audio>
+
+    <script>
+        // Play sound when the page loads
+        window.addEventListener('load', function() {
+            var loadSound = document.getElementById('load-sound');
+            loadSound.play();
+        });
+    </script>
+
     <div id="Container">
         <h1>The Great Turkey Spankin 2024!</h1>
         <h3>Help spank a turkey until it's cooked!</h3>
