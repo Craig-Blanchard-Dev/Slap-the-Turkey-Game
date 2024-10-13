@@ -110,7 +110,7 @@ p {
 
 .left-text, .right-text {
     width: 25%;
-    text-align: left; /* Keep text aligned left */
+    text-align: center; /* Keep text aligned left */
     padding: 10px;
 }
 
@@ -133,6 +133,7 @@ p {
     align-items: center;
     gap: 20px;
     margin: 20px 0;
+    text-align: center;
 }
 
 .footer {
