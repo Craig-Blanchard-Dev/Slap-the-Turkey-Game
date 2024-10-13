@@ -63,11 +63,11 @@ function updateSlapInfo() {
     .then(response => response.json()) // Parse response as JSON
     .then(data => {
         // Update the total slaps display
-        totalSlapsElement.textContent = `Total Slaps: ${data.total}`;
+        totalSlapsElement.textContent = `Total Spanks: ${data.total}`;
         
         // Find the current user's slap count and update progress
         const user = data.users.find(u => u.username === username);
-        progress.textContent = `Your Slaps: ${user ? user.slap_count : 0}`;
+        progress.textContent = `Your Spanks: ${user ? user.slap_count : 0}`;
 
         // Sort users by slap count in descending order
         const sortedUsers = data.users.sort((a, b) => b.slap_count - a.slap_count);
@@ -79,7 +79,7 @@ function updateSlapInfo() {
         // Populate the list with each user's slap count
         sortedUsers.forEach(user => {
             const li = document.createElement('li');
-            li.textContent = `${user.username}: ${user.slap_count} slaps`;
+            li.textContent = `${user.username}: ${user.slap_count} spanks`;
             playerList.appendChild(li);
         });
     })
