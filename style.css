@@ -161,3 +161,8 @@ p {
         text-align: center;
     }
 }
+
+#Logo {
+    max-width: 100%;
+    height: auto;
+}
