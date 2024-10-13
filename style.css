@@ -114,6 +114,11 @@ p {
     padding: 10px;
 }
 
+.left-text iframe {
+    max-width: 100%; /* Ensures the iframe doesn't overflow */
+    height: auto;    /* Maintains aspect ratio */
+}
+
 .image-container {
     width: 50%;
     display: flex;
