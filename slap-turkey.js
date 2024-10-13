@@ -6,23 +6,6 @@ const status = document.getElementById("status");
 const totalSlapsElement = document.getElementById("totalSlaps");
 let username = prompt("Enter your username");
 
-const form = document.getElementById('nameForm');
-
-form.addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevents the page from refreshing
-    const playerName = document.getElementById('playerName').value;
-
-if (playerName) {
-        // Play the turkey sound after the user enters their name
-        var turkeyAudio = document.getElementById('turkeySound');
-        turkeyAudio.play();
-
-        // You can also hide the form or show other content here
-        form.style.display = 'none'; // Hides the form
-        // Display a welcome message or start the game, etc.
-        document.body.insertAdjacentHTML('beforeend', `<p>Welcome, ${playerName}! Get ready to spank the turkey!</p>`);
-}
-
 // Fallback to 'Anonymous' if no username is provided
 if (!username) {
     username = "Anonymous";
