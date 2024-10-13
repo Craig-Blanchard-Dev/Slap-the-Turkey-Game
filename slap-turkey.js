@@ -6,6 +6,11 @@ const status = document.getElementById("status");
 const totalSlapsElement = document.getElementById("totalSlaps");
 let username = prompt("Enter your username");
 
+window.addEventListener('load', function() {
+    var loadSound = document.getElementById('load-sound');
+    loadSound.play();
+});
+
 // Fallback to 'Anonymous' if no username is provided
 if (!username) {
     username = "Anonymous";
