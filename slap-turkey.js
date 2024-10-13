@@ -16,7 +16,7 @@ const thanksgivingDate = new Date('November 28, 2024 00:00:00').getTime();
 
 // Initial slap count and target to fully cook the turkey
 let slaps = 0;
-const totalSlapsToCook = 1000000; // Adjust as necessary
+const totalSlapsToCook = 66000; // Adjust as necessary
 
 // Event listener for when the 'Slap the Turkey' button is clicked
 slapButton.addEventListener("click", () => {
@@ -46,13 +46,13 @@ function updateTurkeyStatus() {
         turkeyImg.src = "Raw_Turkey.webp"; // Adjust image path as needed
     } else if (slaps < (totalSlapsToCook / 3) * 2) {
         status.textContent = "Status: It's starting to steam!";
-        turkeyImg.src = "Raw_Turkey.webp"; // Adjust image path as needed
+        turkeyImg.src = "Steaming_Turkey.webp"; // Adjust image path as needed
     } else if (slaps < totalSlapsToCook) {
         status.textContent = "Status: So close you can smell something!";
-        turkeyImg.src = "Raw_Turkey.webp"; // Adjust image path as needed
+        turkeyImg.src = "Almost_Done_Turkey.webp"; // Adjust image path as needed
     } else {
         status.textContent = "Status: Fully cooked, but so is your hand!";
-        turkeyImg.src = "Cooked_Turkey.webp"; // Change to cooked turkey image
+        turkeyImg.src = "Done_Turkey.webp"; // Change to cooked turkey image
         slapButton.disabled = true; // Disable button when fully cooked
     }
 }
